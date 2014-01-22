@@ -21,7 +21,9 @@ import java.util.List;
 import hudson.model.TaskListener;
 import hudson.slaves.ComputerLauncher;
 import hudson.slaves.SlaveComputer;
+import hudson.util.ListBoxModel;
 import jenkins.model.Jenkins;
+import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -45,9 +47,11 @@ public class DockerComputerLauncher extends ComputerLauncher {
     public final ContainerInspectResponse detail;
     public final DockerTemplate template;
 
+    @DataBoundConstructor
     public DockerComputerLauncher(DockerTemplate template, ContainerInspectResponse containerInspectResponse) {
         this.template = template;
         this.detail = containerInspectResponse;
+        LOGGER.info(containerInspectResponse.toString());
     }
 
     @Override
@@ -92,6 +96,10 @@ public class DockerComputerLauncher extends ComputerLauncher {
 
         public Class getSshConnectorClass() {
             return SSHConnector.class;
+        }
+
+        public ListBoxModel doFillCredentialsIdItems() {
+            return new ListBoxModel();
         }
 
         /**

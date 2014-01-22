@@ -53,8 +53,6 @@ public class DockerCloud extends Cloud {
         else
             this.templates = Collections.emptyList();
 
-
-
         readResolve();
     }
 

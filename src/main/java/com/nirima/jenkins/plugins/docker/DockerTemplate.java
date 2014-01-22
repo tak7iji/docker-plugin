@@ -171,11 +171,10 @@ public class DockerTemplate implements Describable<DockerTemplate> {
         Map<String, PortBinding[]> bports = new HashMap<String, PortBinding[]>();
         PortBinding binding = new PortBinding();
         binding.hostIp = "0.0.0.0";
-        // binding.hostPort = "";
         bports.put("22/tcp", new PortBinding[] { binding });
 
         HostConfig hostConfig = new HostConfig();
-        hostConfig.setPortBindings(bports);
+        hostConfig.setPortBindinds(bports);
 
 
         dockerClient.startContainer(container.getId(), hostConfig);
